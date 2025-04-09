@@ -120,3 +120,5 @@ app.*.symbols
 
 # Firebase
 android/app/google-services.json
+.firebaserc
+lib/firebase_options.dart
