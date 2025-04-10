@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gps_report_app/screens/report_screen/report_screen.dart';
 import 'screens/home_screen/home_screen.dart';
 import 'routes.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +21,10 @@ class MyApp extends StatelessWidget {
       title: "GPS Reporter",
       theme: ThemeData.dark(),
       initialRoute: homeScreenRoute,
-      routes: {homeScreenRoute: (context) => const HomeScreen()},
+      routes: {
+        homeScreenRoute: (context) => const HomeScreen(),
+        reportScreenRoute: (context) => const ReportScreen(),
+      },
     );
   }
 }

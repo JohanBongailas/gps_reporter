@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gps_report_app/custom_widgets/bottom_nav_drawer.dart';
-import 'package:gps_report_app/custom_widgets/report_fab.dart';
 
 class HomeScreenContent extends StatelessWidget {
   const HomeScreenContent({super.key});
@@ -9,17 +8,14 @@ class HomeScreenContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // AppBar
-      appBar: AppBar(title: const Text("Home")),
-
-      // Main content
-      body: Text(
-        "Click on the + icon to add a report.",
-        style: TextStyle(fontSize: 30),
+      appBar: AppBar(
+        title: const Text("Home"),
+        backgroundColor: Colors.blueAccent,
+        centerTitle: true,
       ),
 
-      // FAB
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: ReportFab(),
+      // Main content
+      body: Center(child: Text("Add Report", style: TextStyle(fontSize: 30))),
 
       // Bottom Navigation Drawer
       bottomNavigationBar: BottomNavDrawer(),

@@ -21,9 +21,9 @@ class BottomNavDrawer extends StatelessWidget {
           ),
           IconButton(
             iconSize: 35.0,
-            icon: const Icon(Icons.settings, color: Colors.orangeAccent),
+            icon: const Icon(Icons.add, color: Colors.green),
             onPressed: () {
-              Navigator.pushNamed(context, '/settings');
+              Navigator.pushNamed(context, reportScreenRoute);
             },
           ),
         ],
