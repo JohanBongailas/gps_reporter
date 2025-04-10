@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:gps_report_app/custom_widgets/bottom_nav_drawer.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class ReportScreen extends StatefulWidget {
   const ReportScreen({super.key});
@@ -66,14 +67,31 @@ class _AddReportScreenState extends State<ReportScreen> {
     return await Geolocator.getCurrentPosition();
   }
 
-  void _submitReport() {
+  void _submitReport() async {
     if (_formKey.currentState?.validate() ?? false) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Report submitted: Location ($_lat, $_long)')),
-      );
-    }
+      try {
+        DatabaseReference dbRef = FirebaseDatabase.instance.ref().child(
+          'reports',
+        );
 
-    Navigator.pop(context);
+        await dbRef.push().set({
+          'description': _descriptionController.text.trim(),
+          'latitude': _lat,
+          'longitude': _long,
+          'timestamp': DateTime.now().toIso8601String(),
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Report submitted successfully!')),
+        );
+
+        Navigator.pop(context);
+      } catch (e) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to submit report: $e')));
+      }
+    }
   }
 
   @override
