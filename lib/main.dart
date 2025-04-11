@@ -1,3 +1,4 @@
+import 'package:accessibility_tools/accessibility_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:gps_report_app/screens/report_screen/report_screen.dart';
 import 'screens/home_screen/home_screen.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) => AccessibilityTools(child: child),
       debugShowCheckedModeBanner: false,
       title: "GPS Reporter",
       theme: ThemeData.dark(),
